@@ -55,8 +55,11 @@
             //where frequency is a number[]
             
             let actualTotal = 0;
+            let maxCount = 0;
             for (const count of frequency){
                 actualTotal += count;
+                if (count > maxCount)
+                    maxCount = count;
             }
 
             document.querySelector("span.total").textContent = (actualTotal === rolls) ? rolls : `Only ${actualTotal} (should be ${rolls} - uhoh!)`;
@@ -79,7 +82,7 @@
                     <td class="number">${index}:</td>
                     <td>
                         <meter data-val=${index}
-                        min="0" max="${rolls}" 
+                        min="0" max="${maxCount}" 
                         low="${expectedForUniform / 2}" high="${expectedForUniform * 1.5}" optimum="${rolls}"
                         value="${count}"></meter>
                     </td>
